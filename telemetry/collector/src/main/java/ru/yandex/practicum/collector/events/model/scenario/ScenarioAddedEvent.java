@@ -1,5 +1,6 @@
 package ru.yandex.practicum.collector.events.model.scenario;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import ru.yandex.practicum.collector.events.model.HubEventType;
@@ -10,7 +11,9 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class ScenarioAddedEvent extends ScenarioEvent {
+    @NotNull
     private final ArrayList<ScenarioCondition> conditions;
+    @NotNull
     private final ArrayList<DeviceAction> actions;
 
     public ScenarioAddedEvent(

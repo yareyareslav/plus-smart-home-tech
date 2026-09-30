@@ -1,5 +1,6 @@
 package ru.yandex.practicum.collector.events.model.sensor;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,9 @@ import java.time.Instant;
 @Getter
 @Setter
 public class TemperatureSensorEvent extends SensorEvent {
+    @NotNull
     private final int temperatureC;
+    @NotNull
     private final int temperatureF;
 
     public TemperatureSensorEvent(

@@ -1,14 +1,30 @@
 package ru.yandex.practicum.collector.events.model.sensor;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import ru.yandex.practicum.collector.events.model.Event;
 
 import java.time.Instant;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.EXISTING_PROPERTY,
+        property = "type",
+        defaultImpl = SensorEventType.class
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = ClimateSensorEvent.class, name = "CLIMATE_SENSOR_EVENT"),
+        @JsonSubTypes.Type(value = LightSensorEvent.class, name = "LIGHT_SENSOR_EVENT"),
+        @JsonSubTypes.Type(value = MotionSensorEvent.class, name = "MOTION_SENSOR_EVENT"),
+        @JsonSubTypes.Type(value = SwitchSensorEvent.class, name = "SWITCH_SENSOR_EVENT"),
+        @JsonSubTypes.Type(value = TemperatureSensorEvent.class, name = "TEMPERATURE_SENSOR_EVENT"),
+})
 @Getter
 public abstract class SensorEvent extends Event {
+    @NotBlank
     private final String id;
 
     public SensorEvent(String id, String hubId, Instant timestamp) {
@@ -16,5 +32,6 @@ public abstract class SensorEvent extends Event {
         this.id = id;
     }
 
+    @NotNull
     abstract public SensorEventType getType();
 }
