@@ -20,9 +20,6 @@ import ru.yandex.practicum.kafka.telemetry.event.ScenarioConditionAvro;
 import ru.yandex.practicum.kafka.telemetry.event.ScenarioRemovedEventAvro;
 
 public final class HubEventMapper {
-    private HubEventMapper() {
-    }
-
     public static HubEventAvro toAvro(HubEvent event) {
         return HubEventAvro.newBuilder()
                 .setHubId(event.getHubId())
