@@ -1,4 +1,7 @@
 package ru.yandex.practicum.collector.events.kafka.producer.config;
 
-public interface ProducerConfig {
+import java.util.Properties;
+
+public interface KafkaProducerConfig {
+    Properties getConfig();
 }

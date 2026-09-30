@@ -1,13 +1,15 @@
-package ru.yandex.practicum.collector.events.kafka.producer;
+package ru.yandex.practicum.collector.events.kafka.producer.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.VoidSerializer;
+import org.springframework.stereotype.Component;
 import ru.yandex.practicum.collector.serialization.avro.KafkaGeneralAvroSerializer;
 
 import java.util.Properties;
 
-public class KafkaAvroProducerConfig {
-    Properties properties = new Properties();
+@Component
+public class KafkaAvroProducerConfig implements KafkaProducerConfig {
+    private final Properties properties = new Properties();
 
     public KafkaAvroProducerConfig() {
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -15,5 +17,7 @@ public class KafkaAvroProducerConfig {
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaGeneralAvroSerializer.class);
     }
 
-    
+    public Properties getConfig() {
+        return this.properties;
+    }
 }

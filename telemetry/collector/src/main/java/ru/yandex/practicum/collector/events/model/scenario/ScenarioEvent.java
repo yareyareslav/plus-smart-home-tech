@@ -1,17 +1,16 @@
 package ru.yandex.practicum.collector.events.model.scenario;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import ru.yandex.practicum.collector.events.model.Event;
+import ru.yandex.practicum.collector.events.model.device.HubEvent;
 import ru.yandex.practicum.collector.events.model.HubEventType;
 
 import java.time.Instant;
 
 @Getter
 @Setter
-public abstract class ScenarioEvent extends Event {
+public abstract class ScenarioEvent extends HubEvent {
     @NotBlank
     private final String name;
 
@@ -20,6 +19,6 @@ public abstract class ScenarioEvent extends Event {
         this.name = name;
     }
 
-    @NotNull
-    abstract HubEventType getType();
+    @Override
+    public abstract HubEventType getType();
 }

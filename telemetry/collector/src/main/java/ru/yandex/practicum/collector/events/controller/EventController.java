@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.collector.events.model.device.DeviceEvent;
+import ru.yandex.practicum.collector.events.model.device.HubEvent;
 import ru.yandex.practicum.collector.events.model.sensor.SensorEvent;
 import ru.yandex.practicum.collector.events.service.EventsService;
 
@@ -22,7 +22,7 @@ public class EventController {
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PostMapping("/hubs")
-    public void collectHubsEvents(@Valid @RequestBody DeviceEvent event) {
+    public void collectHubsEvents(@Valid @RequestBody HubEvent event) {
         eventsService.collectHubsEvents(event);
     }
 }

@@ -7,14 +7,14 @@ import lombok.Setter;
 @Setter
 public class ScenarioCondition {
     private final String sensorId;
-    private final DeviceActionType type;
+    private final OperationType type;
     private Integer value;
-    private OperationType operation;
+    private ConditionOperation operation;
 
     public ScenarioCondition(
             String sensorId,
-            DeviceActionType type,
-            OperationType operation,
+            OperationType type,
+            ConditionOperation operation,
             Integer value
     ) {
         this.sensorId = sensorId;
